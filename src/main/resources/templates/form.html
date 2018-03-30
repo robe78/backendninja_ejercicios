@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>FOMR</title>
+</head>
+<!-- <body> -->
+<!-- 	<form action="#" th:action="@{/example3/addperson}" th:object="${person}" method="post"> -->
+<!-- 	<p>NOMBRE: <input type="text" th:field="*{name}"/></p> -->
+<!-- 	<p>EDAD: <input type="number" th:field="*{age}"/></p> -->
+<!-- 	<p><input type="submit" value="ENVIAR"/></p> -->
+<!-- 	</form> -->
+<!-- </body> -->
+<body>
+	<form action="#" th:action="@{/example3/addperson}" th:object="${person}" method="post">
+	<p>NOMBRE: <input type="text" th:field="*{name}"/></p>
+	<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Nombre con errores</p>
+	<p>EDAD: <input type="number" th:field="*{age}"/></p>
+	<p th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Edad con errores</p>
+	<p><input type="submit" value="ENVIAR"/></p>
+	</form>
+</body>
+</html>

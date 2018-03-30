@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>Courses</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+<!--      MOSTRAR SOLO LISTADO  -->
+<!-- 	<table> -->
+<!-- 		<thead> -->
+<!-- 			<tr> -->
+<!-- 				<th>Nombre</th> -->
+<!-- 				<th>Descripción</th> -->
+<!-- 				<th>Precio</th> -->
+<!-- 				<th>Horas</th>			 -->
+<!-- 			</tr> -->
+<!-- 		</thead> -->
+<!-- 		<tbody> -->
+<!-- 			<tr th:each="course : ${courses}"> -->
+<!-- 				<th><span th:text="${course.name}">Nombre</span></th> -->
+<!-- 				<th><span th:text="${course.description}">Descripción</span></th> -->
+<!-- 				<th><span th:text="${course.price}">Precio</span></th> -->
+<!-- 				<th><span th:text="${course.hours}">Horas</span></th>	 -->
+<!-- 			</tr> -->
+<!-- 		</tbody> -->
+<!-- 	</table> -->
+
+	<h1 class="text-center">AÑADIR CURSOS</h1>
+
+	<form action="#" th:action="@{/courses/addcourse}" th:object="${course}" method="post">
+	
+		<div class="form-group">
+			<label for="name">Nombre</label>
+			<input type="text" th:field="*{name}" class="form-control"/>
+		</div>
+		
+		<div class="form-group">
+			<label for="description">Descripción</label>
+			<input type="text" th:field="*{description}" class="form-control"/>
+		</div>
+		
+		<div class="form-group">
+			<label for="price">Precio</label>
+			<input type="number" th:field="*{price}" class="form-control"/>
+		</div>
+		
+		<div class="form-group">
+			<label for="hours">Horas</label>
+			<input type="number" th:field="*{hours}" class="form-control"/>
+		</div>
+
+		<button type="submit" class="btn btn-success"/>Añadir</button>
+
+	</form>
+	
+	<hr>
+	
+	<h1 class="text-center">LISTAR CURSOS</h1>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Nombre</th>
+				<th scope="col">Descripción</th>
+				<th scope="col">Precio</th>
+				<th scope="col">Horas</th>	
+			</tr>
+		</thead>
+		<tbody>		
+			<tr th:each="course : ${courses}">
+				<td><span th:text="${course.name}" >Nombre</span></td>
+				<td><span th:text="${course.description}">Descripción</span></td>
+				<td><span th:text="${course.price}">Precio</span></td>
+				<td><span th:text="${course.hours}">Horas</span></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<hr>
+
+	<h1 class="text-center">MODIFICAR CURSOS</h1>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Nombre</th>
+				<th scope="col">Descripción</th>
+				<th scope="col">Precio</th>
+				<th scope="col">Horas</th>
+				<th scope="col"></th>
+				<th scope="col"></th>		
+			</tr>
+		</thead>
+		<tbody>	
+		<tbody>		
+			<tr th:each="course : ${courses}">
+				<form action="#" th:action="@{/courses/updatecourse}" th:object="${course}" method="post">
+					<td><input type="text" th:id="name" th:name="name" th:value="${course.name}"/></td>
+					<td><input type="text" th:id="description" th:name="description" th:value="${course.description}"/></td>
+					<td><input type="number" th:id="price" th:name="price" th:value="${course.price}"/></td>
+					<td><input type="number" th:id="hours" th:name="hours" th:value="${course.hours}"/></td>
+ 					<td><input type="hidden" th:id="id" th:name="id" th:value="${course.id}" /></td>
+					<td><button type="submit" class="btn btn-primary">Modificar</button></td>
+				</form>						
+			</tr>
+		</tbody>
+	</table>
+	
+	<hr>
+		
+	<h1 class="text-center">BORRAR CURSOS</h1>
+	
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Nombre</th>
+				<th scope="col">Descripción</th>
+				<th scope="col">Precio</th>
+				<th scope="col">Horas</th>
+				<th scope="col"></th>
+				<th scope="col"></th>		
+			</tr>
+		</thead>
+		<tbody>		
+			<tr th:each="course : ${courses}">
+				<form action="#" th:action="@{/courses/deletecourse}" th:object="${course}" method="post">
+					<td><span th:text="${course.name}" >Nombre</span></td>
+					<td><span th:text="${course.description}">Descripción</span></td>
+					<td><span th:text="${course.price}">Precio</span></td>
+					<td><span th:text="${course.hours}">Horas</span></td>
+					<td ><input type="hidden" th:id="id" th:name="id" th:value="${course.id}"/></td>
+					<td><button type="submit" class="btn btn-danger">Borrar</button></td>
+				</form>		
+			</tr>
+		</tbody>
+	</table>
+	<hr>
+
+	</div>
+</body>
+</html>
